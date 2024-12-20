@@ -12,8 +12,125 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
+        '/HomePage': (context) => const HomePage(),
+        '/': (context) => const MyListView(),
       },
+    );
+  }
+}
+
+class MyListView extends StatelessWidget {
+  const MyListView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('List View Widget'),
+        centerTitle: true,
+        backgroundColor: Colors.amber,
+      ),
+      drawer: const Drawer(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.zero)),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            const Text(
+              'Good Morning',
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Text(
+                '''On the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document. You can use these galleries to insert tables, headers, footers, lists, cover pages, and other document building blocks. When you create pictures, charts, or diagrams, they also coordinate with your current document look. You can easily change the formatting of selected text in the document text by choosing a look for the selected text from the Quick Styles gallery on the Home tab. You can also format text directly by using the other controls on the Home tab.'''),
+            SizedBox(
+              height: 100,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.amber,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.amber,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.blue,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.yellow,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: 100,
+              color: Colors.amber,
+            ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Container(
+              height: 100,
+              color: Colors.blue,
+            ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Container(
+              height: 100,
+              color: Colors.amber,
+            ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Container(
+              height: 100,
+              color: Colors.green,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
