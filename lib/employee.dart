@@ -3,7 +3,7 @@ class Salary {
   double? _salary;
 
   set setSalary(double newSalary) {
-    this._salary = newSalary;
+    _salary = newSalary;
   }
 
   get getSalary => _salary;

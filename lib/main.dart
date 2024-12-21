@@ -13,8 +13,177 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/HomePage': (context) => const HomePage(),
-        '/': (context) => const MyListView(),
+        '/MyListView': (context) => const MyListView(),
+        '/CustomButton': (context) => const CustomButton(),
+        '/MyPageView': (context) => const MyPageView(),
+        '/': (context) => ListDynamicData(),
       },
+    );
+  }
+}
+
+class ListDynamicData extends StatelessWidget {
+  ListDynamicData({super.key});
+  final List<Map<String, String>> users = [
+    {'name': 'Ashik', 'age': '18'},
+    {'name': 'Ajmery', 'age': '12'},
+    {'name': 'Ariful', 'age': '14'},
+    {'name': 'Mridhu', 'age': '20'},
+    {'name': 'Maysha', 'age': '4'},
+    {'name': 'Humaira', 'age': '1'},
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Dynamically Data fetch using map() from List '),
+        centerTitle: true,
+        backgroundColor: Colors.amber,
+      ),
+      body: SizedBox(
+        height: 120,
+        child: ListView(
+          children: [
+            Image.asset('assets/images/1.jpg'),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MyPageView extends StatelessWidget {
+  const MyPageView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Page View'),
+        centerTitle: true,
+        backgroundColor: Colors.amber,
+      ),
+      body: Scrollbar(
+        thumbVisibility: true,
+        thickness: 10.0,
+        radius: const Radius.circular(10.0),
+        child: ListView(
+          children: List.generate(
+            100,
+            (index) => Text('Item number : ${index + 1}'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Button Widget'),
+        centerTitle: true,
+        backgroundColor: Colors.amber,
+      ),
+      drawer: const Drawer(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.zero),
+        ),
+      ),
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 20.0),
+            GestureDetector(
+              onTap: () {
+                debugPrint('This is a button');
+              },
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: Container(
+                  width: 150,
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20.0),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 15.0,
+                        spreadRadius: 1.0,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 75,
+                        height: 40,
+                        decoration: const BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            bottomLeft: Radius.circular(20.0),
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.home,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(width: 15),
+                      const Text('Home'),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.amber,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero),
+              ),
+              child: const Text('Elevated Button'),
+            ),
+            const SizedBox(height: 20),
+            OutlinedButton(
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
+                ),
+              ),
+              child: const Text('Outline Button'),
+            ),
+            const SizedBox(height: 20.0),
+            TextButton(
+              onPressed: () {},
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.black,
+              ),
+              child: const Text('Text Button'),
+            ),
+            const SizedBox(height: 20.0),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.person),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -38,69 +207,45 @@ class MyListView extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: [
-            const Text(
-              'Good Morning',
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
+            SizedBox(
+              height: 200,
+              child: RichText(
+                text: const TextSpan(
+                  text: 'Good Morning',
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  children: [
+                    TextSpan(
+                      text:
+                          '\n\nOn the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document. You can use these galleries to insert tables, headers, footers, lists, cover pages, and other document building blocks. On the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document. You can use these galleries to insert tables,',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-            const Text(
-                '''On the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document. You can use these galleries to insert tables, headers, footers, lists, cover pages, and other document building blocks. When you create pictures, charts, or diagrams, they also coordinate with your current document look. You can easily change the formatting of selected text in the document text by choosing a look for the selected text from the Quick Styles gallery on the Home tab. You can also format text directly by using the other controls on the Home tab.'''),
             SizedBox(
-              height: 100,
-              child: ListView(
+              height: 150,
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      color: Colors.amber,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.only(right: 8.0, bottom: 8.0),
+                    width: 150,
+                    height: 150,
+                    color: Colors.amber,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text('Item ${index + 1}'),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      color: Colors.amber,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      color: Colors.yellow,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
+                  );
+                },
               ),
             ),
             Container(
@@ -127,6 +272,27 @@ class MyListView extends StatelessWidget {
             Container(
               height: 100,
               color: Colors.green,
+            ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Container(
+              height: 100,
+              color: Colors.yellow,
+            ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Container(
+              height: 100,
+              color: Colors.green,
+            ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Container(
+              height: 100,
+              color: Colors.yellow,
             ),
           ],
         ),
